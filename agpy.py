@@ -25,8 +25,8 @@
 import arcpy
 
 def export_map_to_tiff(filename, width, height):
-    '''Export the current project's first map to TIFF'''
-    arcpy.mp.ArcGISProject('CURRENT').listMaps('Map')[0].defaultView.exportToTIFF(filename, width, height, geoTIFF_tags=True)
+    '''Export the current project's active map to TIFF'''
+    arcpy.mp.ArcGISProject('CURRENT').activeMap.defaultView.exportToTIFF(filename, width, height, geoTIFF_tags=True)
 
 def convert_array_to_raster(array, ref_raster):
     '''Convert a numpy array to a raster'''
