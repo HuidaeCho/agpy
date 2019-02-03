@@ -22,6 +22,8 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ################################################################################
 
+import arcpy
+
 def export_map_to_tiff(filename, width, height):
     '''Export the current project's first map to TIFF'''
     arcpy.mp.ArcGISProject('CURRENT').listMaps('Map')[0].defaultView.exportToTIFF(filename, width, height, geoTIFF_tags=True)
