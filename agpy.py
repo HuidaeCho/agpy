@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-############################################################################
+################################################################################
 # Name:    AgPy: An ArcGIS Pro Python module
 # Purpose: This module provides convenient functions for ArcGIS Pro Python
 #          scripting.
@@ -20,7 +20,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#############################################################################
+################################################################################
 
 def export_map_to_tiff(filename, width, height):
     '''Export the current project's first map to TIFF'''
