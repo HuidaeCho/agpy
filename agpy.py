@@ -51,13 +51,12 @@ def convert_array_to_grayscale_raster(array, ref_raster):
 
 def convert_raster_to_grayscale(raster):
     '''Convert a raster to grayscale'''
-    array = arcpy.RasterToNumPyArray(raster)
-    gray_array = convertNumPyArrayToGrayscale(array)
+    gray_array = convert_raster_to_grayscale_array(raster)
     gray_raster = convert_array_to_raster(gray_array, raster)
     return gray_raster
 
 def convert_raster_to_grayscale_array(raster):
     '''Convert a raster to a grayscale array'''
     array = arcpy.RasterToNumPyArray(raster)
-    gray_array = convertNumPyArrayToGrayscale(array)
+    gray_array = convert_array_to_grayscale(array)
     return gray_array
