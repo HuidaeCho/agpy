@@ -26,14 +26,36 @@ def export_map_to_tiff(filename, width, height):
     '''Export the current project's first map to TIFF'''
     arcpy.mp.ArcGISProject('CURRENT').listMaps('Map')[0].defaultView.exportToTIFF(filename, width, height, geoTIFF_tags=True)
 
+def convert_array_to_raster(array, ref_raster):
+    '''Convert a numpy array to a raster'''
+    raster = arcpy.NumPyArrayToRaster(array, ref_raster.extent.lowerLeft, ref_raster.meanCellWidth, ref_raster.meanCellHeight)
+    return raster
+
+def convert_raster_array(raster):
+    '''Convert a raster to a numpy array'''
+    array = arcpy.RasterToNumPyArray(raster)
+    return array
+
 def convert_array_to_grayscale(array):
     '''Convert a numpy array to grayscale'''
     gray_array = array[0] * 0.299 + array[1] * 0.587 + array[2] * 0.114
+    return gray_array
+
+def convert_array_to_grayscale_raster(array, ref_raster):
+    '''Convert a numpy array to a grayscale raster'''
+    gray_array = convert_array_to_grayscale(array)
+    gray_raster = convert_array_to_raster(gray_array, ref_raster)
     return gray_array
 
 def convert_raster_to_grayscale(raster):
     '''Convert a raster to grayscale'''
     array = arcpy.RasterToNumPyArray(raster)
     gray_array = convertNumPyArrayToGrayscale(array)
-    gray_raster = arcpy.NumPyArrayToRaster(gray_array, raster.extent.lowerLeft, raster.meanCellWidth, raster.meanCellHeight)
+    gray_raster = convert_array_to_raster(gray_array, raster)
     return gray_raster
+
+def convert_raster_to_grayscale_array(raster):
+    '''Convert a raster to a grayscale array'''
+    array = arcpy.RasterToNumPyArray(raster)
+    gray_array = convertNumPyArrayToGrayscale(array)
+    return gray_array
