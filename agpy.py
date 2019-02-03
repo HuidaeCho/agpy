@@ -31,7 +31,7 @@ def convert_array_to_raster(array, ref_raster):
     raster = arcpy.NumPyArrayToRaster(array, ref_raster.extent.lowerLeft, ref_raster.meanCellWidth, ref_raster.meanCellHeight)
     return raster
 
-def convert_raster_array(raster):
+def convert_raster_to_array(raster):
     '''Convert a raster to a numpy array'''
     array = arcpy.RasterToNumPyArray(raster)
     return array
