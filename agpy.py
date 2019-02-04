@@ -40,6 +40,8 @@ def convert_raster_to_array(raster):
 
 def convert_array_to_grayscale(array):
     '''Convert a numpy array to grayscale'''
+    # TODO: this line returns a true integer array, but symbology needs to be handled
+    #gray_array = (array[0] * 0.299 + array[1] * 0.587 + array[2] * 0.114).astype(int)
     gray_array = array[0] * 0.299 + array[1] * 0.587 + array[2] * 0.114
     for i in range(0, gray_array.shape[0]):
         for j in range(0, gray_array.shape[1]):
